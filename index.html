@@ -75,5 +75,25 @@
       </table>
     </div>
   </main>
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DNS00000XpDxt',
+				'Veeva_to_Agentforce',
+				'https://orgfarm-c1983a324c-dev-ed.develop.my.site.com/ESWVeevatoAgentforce1756116613661',
+				{
+					scrt2URL: 'https://orgfarm-c1983a324c-dev-ed.develop.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://orgfarm-c1983a324c-dev-ed.develop.my.site.com/ESWVeevatoAgentforce1756116613661/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
 </body>
 </html>
