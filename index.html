@@ -1,99 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veeva CRM Demo UI</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Einstein Agent Chat • Vanilla JS</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Veeva CRM - Demo UI</h1>
-    <div>User: John Doe</div>
-  </header>
+<header>
+<span class="dot" id="conn-dot" title="Ready"></span>
+<h1>Einstein Agent Chat (Salesforce API)</h1>
+</header>
 
-  <nav>
-    <ul>
-      <li><a href="#" class="active">Dashboard</a></li>
-      <li><a href="#">Accounts</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="#">Calls</a></li>
-      <li><a href="#">Reports</a></li>
-      <li><a href="#">Settings</a></li>
-    </ul>
-  </nav>
 
-  <main>
-    <div class="card">
-      <h2>Today's Schedule</h2>
-      <table>
-        <tr>
-          <th>Time</th>
-          <th>Activity</th>
-          <th>Account</th>
-        </tr>
-        <tr>
-          <td>10:00 AM</td>
-          <td>Call with Dr. Smith</td>
-          <td>New York Medical Center</td>
-        </tr>
-        <tr>
-          <td>2:00 PM</td>
-          <td>Product Demo</td>
-          <td>Green Valley Clinic</td>
-        </tr>
-      </table>
-    </div>
+<section class="settings">
+<input id="sessionId" placeholder="SESSION_ID (required)" />
+<input id="accessToken" placeholder="ACCESS_TOKEN (required)" />
+<button id="saveCreds" title="Save to this tab only">Apply</button>
+</section>
 
-    <div class="card">
-      <h2>Recent Accounts</h2>
-      <table>
-        <tr>
-          <th>Account Name</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td>New York Medical Center</td>
-          <td>Hospital</td>
-          <td>Active</td>
-          <td><button class="btn">View</button></td>
-        </tr>
-        <tr>
-          <td>Green Valley Clinic</td>
-          <td>Clinic</td>
-          <td>Prospect</td>
-          <td><button class="btn">View</button></td>
-        </tr>
-        <tr>
-          <td>Sunrise Pharma</td>
-          <td>Pharma</td>
-          <td>Active</td>
-          <td><button class="btn">View</button></td>
-        </tr>
-      </table>
-    </div>
-  </main>
-<script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-			embeddedservice_bootstrap.init(
-				'00DNS00000XpDxt',
-				'Veeva_to_Agentforce',
-				'https://orgfarm-c1983a324c-dev-ed.develop.my.site.com/ESWVeevatoAgentforce1756116613661',
-				{
-					scrt2URL: 'https://orgfarm-c1983a324c-dev-ed.develop.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://orgfarm-c1983a324c-dev-ed.develop.my.site.com/ESWVeevatoAgentforce1756116613661/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<main id="chat" aria-live="polite" aria-busy="false">
+<div class="msg ai">
+<div class="avatar">EA</div>
+<div>
+<div class="bubble">
+Hi! I'm wired up to the Einstein Agent Messages API.
+Provide your SESSION_ID and ACCESS_TOKEN above, then ask me something like:
+“Show me the cases associated with Lauren Bailey.”
+</div>
+<div class="meta">Tip: your credentials are only kept in-memory for this tab.</div>
+</div>
+</div>
+</main>
 
+
+<form class="composer" id="composer">
+<textarea id="input" placeholder="Type your message… (Ctrl/Cmd+Enter to send)"></textarea>
+<button id="mic" type="button" aria-pressed="false" title="Start voice input">🎤</button>
+<button id="send" type="submit">Send</button>
+</form>
+
+
+<script src="app.js"></script>
 </body>
 </html>
